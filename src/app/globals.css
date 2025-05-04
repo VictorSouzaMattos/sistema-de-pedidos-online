@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+body {
+  background-color: #f8f9fa;
+  font-size: 18px;
+}
+
+.font-montserrat {
+  font-family: "Montserrat", sans-serif;
+}
+.font-nunito {
+  font-family: "Nunito", sans-serif;
+}
+.font-inter {
+  font-family: "Inter", sans-serif;
+}

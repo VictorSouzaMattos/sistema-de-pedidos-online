@@ -8,7 +8,7 @@ export default function MenuList({ addToCart, selectedCategory }) {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/menu`)
+      axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/menu`)
       .then((response) => setMenuItems(response.data))
       .catch((error) => console.error("Erro ao buscar itens:", error));
   }, []);

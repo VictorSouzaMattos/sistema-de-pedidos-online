@@ -56,8 +56,8 @@ export default function CheckoutPage() {
         preco: item.preco,
       }));
 
-      // Enviar pedido para o backend
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/orders`, data)
+      // Enviar pedido para o backend (correção aqui)
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/orders`, {
         cliente: customerInfo,
         items: items,
         total: total,

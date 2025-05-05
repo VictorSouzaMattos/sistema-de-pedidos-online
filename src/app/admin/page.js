@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 export default function AdminPage() {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
   const [menuItems, setMenuItems] = useState([]);
   const [formData, setFormData] = useState({
     nome: "",
@@ -14,30 +16,27 @@ export default function AdminPage() {
   });
   const [editingId, setEditingId] = useState(null);
 
-  useEffect(() => {
-    fetchMenuItems();
-  }, []);
-
-  const fetchMenuItems = async () => {
+  const fetchMenuItems = useCallback(async () => {
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/orders`, data)
+      const response = await axios.get(`${API_URL}/api/admin/menu`);
       setMenuItems(response.data);
     } catch (error) {
       console.error("Erro ao buscar itens do menu:", error);
     }
-  };
+  }, [API_URL]);
+
+  useEffect(() => {
+    fetchMenuItems();
+  }, [fetchMenuItems]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (editingId) {
-        await axios.put(
-          `http://localhost:3000/api/admin/menu/${editingId}`,
-          formData
-        );
+        await axios.put(`${API_URL}/api/admin/menu/${editingId}`, formData);
         setEditingId(null);
       } else {
-        await axios.post("http://localhost:3000/api/admin/menu", formData);
+        await axios.post(`${API_URL}/api/admin/menu`, formData);
       }
       setFormData({
         nome: "",
@@ -54,7 +53,7 @@ export default function AdminPage() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/admin/menu/${id}`);
+      await axios.delete(`${API_URL}/api/admin/menu/${id}`);
       fetchMenuItems();
     } catch (error) {
       console.error("Erro ao excluir prato:", error);
@@ -123,7 +122,9 @@ export default function AdminPage() {
               <div>
                 <p className="font-bold">{item.nome}</p>
                 <p>{item.descricao}</p>
-                <p className="text-orange-600">R$ {item.preco.toFixed(2)}</p>
+                <p className="text-orange-600">
+                  R$ {Number(item.preco).toFixed(2)}
+                </p>
               </div>
               <div className="flex gap-2">
                 <button

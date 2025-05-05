@@ -57,7 +57,7 @@ export default function CheckoutPage() {
       }));
 
       // Enviar pedido para o backend
-      await axios.post("http://localhost:3000/api/orders", {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/orders`, data)
         cliente: customerInfo,
         items: items,
         total: total,

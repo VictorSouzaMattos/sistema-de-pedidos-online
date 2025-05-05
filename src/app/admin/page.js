@@ -20,7 +20,7 @@ export default function AdminPage() {
 
   const fetchMenuItems = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/admin/menu");
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/orders`, data)
       setMenuItems(response.data);
     } catch (error) {
       console.error("Erro ao buscar itens do menu:", error);

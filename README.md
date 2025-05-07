@@ -12,7 +12,7 @@ Aplicação frontend desenvolvida em Next.js e Tailwind CSS para o sistema de pe
 
 ## Tecnologias
 
-- Next.js 13 (App Router)
+- Next.js 13 
 - React
 - Tailwind CSS
 - Axios (para requisições HTTP)
@@ -21,11 +21,20 @@ Aplicação frontend desenvolvida em Next.js e Tailwind CSS para o sistema de pe
 
 1. Clone o repositório: git clone https://github.com/VictorSouzaMattos/sistema-de-pedidos-online.git
 
-2. Entre na pasta do projeto: cd sistema-de-pedidos-online.git
+2. Crie um arquivo `.env.local` na raiz do projeto com: NEXT_PUBLIC_API_URL=https://projeto-restaurante-backend.onrender.com
 
-3. Instale as dependências: npm install
+3. Entre na pasta do projeto: cd sistema-de-pedidos-online
 
-4. Inicie o servidor de desenvolvimento: npm run dev
+5. Instale as dependências: npm install
 
-5. Acesse no navegador: http://localhost:3001
+6. Inicie o servidor de desenvolvimento: npm run dev
+
+7. Acesse no navegador: http://localhost:3001
+
+
+## Deploy
+
+O frontend está disponível em:  
+https://sistema-de-pedidos-online.vercel.app
+
 
